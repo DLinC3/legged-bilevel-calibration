@@ -3,22 +3,24 @@
 [![CasADi](https://img.shields.io/badge/CasADi-3.6%2B-lightgrey.svg)](https://web.casadi.org/)
 [![Pinocchio](https://img.shields.io/badge/Pinocchio-latest-brightgreen.svg)](https://stack-of-tasks.github.io/pinocchio/)
 [![License](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/license/mit)
-[[ArXiv]](https://arxiv.org/pdf/2510.11539)
 
 ---
 
 ## Overview
 
-This repository provides a research implementation of the bi-level optimization framework for joint calibration of noise covariances and kinematics in legged-robot state estimation. Conventional legged-robot estimators depend critically on process and measurement noise covariances that are typically hand-tuned. Inaccurate tuning or uncertain kinematics can lead to inconsistent or drifting estimates. This work eliminates manual tuning by embedding the estimator itself inside an optimization loop.
+This repository implements a bi-level optimization framework for the joint calibration of noise covariances and kinematic parameters in legged-robot state estimation. Conventional legged-robot estimators depend critically on process and measurement noise covariances that are typically hand-tuned. Inaccurate tuning or uncertain kinematics can lead to inconsistent or drifting estimates. This work eliminates manual tuning by embedding the estimator itself inside an optimization loop.
+
 At the lower level, a Full-Information Estimator(FIE) reconstructs the base pose, velocity, contact states, and bias terms given proprioceptive data (IMU, encoders, contact).
 At the upper level, we treat all covariance matrices and kinematic parameters—including leg-tip offsets and base-to-mocap alignment—as optimization variables, and minimize a trajectory-level loss measuring the deviation between estimated and ground-truth motion.
 The coupling between the two levels is realized by differentiating through the estimator’s KKT conditions, enabling gradient-based updates of physically-constrained parameters. The outer optimization adopts an adaptive Frank–Wolfe algorithm with a convex Linear Minimization Oracle (LMO) and Armijo line search to ensure stable convergence within the positive-definite and box-bounded constraint set.
+
+The detailed mathematical formulation and derivations underlying this framework are presented in the paper. [[ArXiv]](https://arxiv.org/pdf/2510.11539)
 
 In short:
 
 > **FIE (inner)  ⟶  KKT-based Differentiation  ⟶  Frank–Wolfe (outer)  ⟶  calibrated legged state estimator.**
 
-This repo is intentionally split into modules:
+This repo is split into modules:
 
 - data loading and downsampling,
 - Pinocchio-based kinematics and measurement construction,
@@ -26,7 +28,6 @@ This repo is intentionally split into modules:
 - the bilevel / FW solver,
 - plotting and CSV exports.
 
-This repository reproduces the full pipeline reported in the paper: from CasADi-generated analytical derivatives and Pinocchio-based kinematics, to MOSEK-backed LMO solves and pypardiso-accelerated sensitivity analysis. It is structured for clarity and reusability, allowing researchers to extend the framework to other platforms, estimators, or calibration targets such as inertial and dynamic parameters.
 ---
 
 ## Installation / Dependencies
@@ -184,4 +185,4 @@ and new files under `outputs/`:
 
 ## Citation
 
-If you find this code useful in your research, please cite the original paper:
+If you find this code useful in your research, please cite the original paper
