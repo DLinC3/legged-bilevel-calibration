@@ -34,21 +34,21 @@ This repository requires a standard robotics + optimization Python stack, plus P
   https://www.python.org/downloads/
 
 ### 2. Python Packages
-- **CasADi ≥ 3.6** (symbolic modeling, codegen, and differentiating the estimator)  
+- **CasADi ≥ 3.6** 
   https://web.casadi.org/get/
-- **Pinocchio** (rigid-body kinematics, frame placements, Jacobians)  
+- **Pinocchio** 
   https://stack-of-tasks.github.io/pinocchio/  
-  Conda (recommended): https://anaconda.org/conda-forge/pinocchio
-- **NumPy / SciPy / Matplotlib** (numerics, utilities, plotting)
+  Conda: https://anaconda.org/conda-forge/pinocchio
+- **NumPy / SciPy / Matplotlib** 
   - https://pypi.org/project/numpy/
   - https://pypi.org/project/scipy/
   - https://pypi.org/project/matplotlib/
 - **pypardiso** (fast sparse linear solver used when differentiating through the estimator’s KKT system)  
   https://github.com/haasad/PyPardisoProject
-- **CVXPY** (outer-level Frank–Wolfe linear minimization oracle)  
+- **CVXPY** 
   https://www.cvxpy.org/install/
 
-### 3. Convex Solvers for CVXPY
+### 3. Solvers
 - **MOSEK**
   - Install: https://docs.mosek.com/latest/install/installation.html
   - Academic license: https://www.mosek.com/products/academic-licenses/
