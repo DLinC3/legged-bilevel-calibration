@@ -1,9 +1,4 @@
 # Simultaneous Calibration of Noise Covariance and Kinematics for State Estimation of Legged Robots via Bi-level Optimization
-
-[![CasADi](https://img.shields.io/badge/CasADi-3.6%2B-lightgrey.svg)](https://web.casadi.org/)
-[![Pinocchio](https://img.shields.io/badge/Pinocchio-latest-brightgreen.svg)](https://stack-of-tasks.github.io/pinocchio/)
-[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/license/mit)
-
 ---
 
 ## Overview
